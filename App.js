@@ -50,7 +50,7 @@ const App = () => {
           data={mediaArray}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity style={styles.flexbox}>
                 <Image
                   style={{width: 100, height: 100}}
                   source={{uri: item.thumbnails.w160}}
@@ -69,13 +69,21 @@ const App = () => {
   );
 };
 
+
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 5,
+    padding: 20,
+    backgroundColor: 'grey',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  flexbox:{
+    flex: 1,
+    padding: 20,
+    alignItems: 'center',
+  }
 });
 
 export default App;
