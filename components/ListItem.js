@@ -1,21 +1,20 @@
-import {Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import PropTypes from 'prop-types';
-
-
+import { Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 
 const ListItem = (props) => {
   return (
     <TouchableOpacity
+      style={styles.Item}
       onPress={() => {
-        console.log('touched!', props.singleMedia.title);
+        console.log("touched!", props.singleMedia.title);
       }}
     >
       <Image
-        style={{width: 100, height: 100}}
-        source={{uri: props.singleMedia.thumbnails.w160}}
+        style={styles.image}
+        source={{ uri: props.singleMedia.thumbnails.w160 }}
       />
-      <Text>{props.singleMedia.title}</Text>
-      <Text>{props.singleMedia.description}</Text>
+      <Text style={styles.title}>{props.singleMedia.title}</Text>
+      <Text style={styles.text}>{props.singleMedia.description}</Text>
     </TouchableOpacity>
   );
 };
@@ -25,18 +24,30 @@ ListItem.propTypes = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 5,
-      padding: 20,
-      backgroundColor: 'grey',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    flexbox:{
-      flex: 1,
-      padding: 20,
-      alignItems: 'center',
-    }
-  });
+  Item: {
+    backgroundColor: "lightblue",
+    centerContent: "center",
+    margin: 10,
+  },
+  text: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: 15,
+  },
+  image: {
+    margin: 10,
+    width: 100,
+    height: 100,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    flexbox: "column",
+  },
+  title: {
+    margin: 10,
+    fontSize: 30,
+    fontWeight: "bold",
+    flexbox: "column",
+  },
+});
 
 export default ListItem;
