@@ -14,9 +14,10 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: Platform.OS === 'android' ? 25 : 0,
     flex: 5,
     padding: 20,
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },

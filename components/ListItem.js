@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 
 const ListItem = (props) => {
   return (
-    <TouchableOpacity
+    <TouchableOpacity style={styles.item}
       onPress={() => {
         console.log('touched!', props.singleMedia.title);
       }}
     >
-      <Image
+      <Image 
         style={{width: 100, height: 100}}
+
         source={{uri: props.singleMedia.thumbnails.w160}}
       />
       <Text>{props.singleMedia.title}</Text>
@@ -25,17 +26,13 @@ ListItem.propTypes = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 5,
-      padding: 20,
-      backgroundColor: 'grey',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    flexbox:{
-      flex: 1,
-      padding: 20,
-      alignItems: 'center',
+    
+    item:{
+        backgroundColor: 'green',
+        padding: 20,
+        marginVertical: 8,
+        flex: 1,
+        flexDirection: 'row'
     }
   });
 
