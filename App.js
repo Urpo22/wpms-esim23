@@ -5,10 +5,10 @@ import List from "./components/List";
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <List />
+    <>
+      <Home></Home>
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </>
   );
 };
 
