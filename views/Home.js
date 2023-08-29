@@ -9,6 +9,7 @@ import {
   View,
   Platform,
 } from "react-native";
+import List from "../components/List";
 
 const mediaArray = [
   {
