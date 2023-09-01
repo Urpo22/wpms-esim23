@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, Text } from "react-native";
+import { Platform, SafeAreaView, StyleSheet, Text } from "react-native";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Profile</Text>
+      <Text>Profile view</Text>
     </SafeAreaView>
   );
 };
@@ -12,10 +12,10 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS === "android" ? 30 : 0,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 40,
   },
 });
 
