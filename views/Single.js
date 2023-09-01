@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "android" ? 30 : 0,
-    backgroundColor: "#fff",
+    backgroundColor: "#gray",
     alignItems: "center",
     justifyContent: "center",
   },
