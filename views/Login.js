@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import {
-  StyleSheet,
-  Text,
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
@@ -24,6 +22,7 @@ const Login = ({ navigation }) => {
       const token = await AsyncStorage.getItem("userToken");
       // hardcoded token validation
       const userData = await getUserByToken(token);
+      console.log("token", token);
       console.log("userdata", userData);
       if (userData) {
         setIsLoggedIn(true);
@@ -46,25 +45,13 @@ const Login = ({ navigation }) => {
     >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
       >
-        <Text>Login</Text>
         <LoginForm />
-        <Text>Register</Text>
         <RegisterForm />
       </KeyboardAvoidingView>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 Login.propTypes = {
   navigation: PropTypes.object,
