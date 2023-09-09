@@ -3,7 +3,8 @@ import { useAuthentication } from "../hooks/ApiHooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext } from "react";
 import { MainContext } from "../contexts/MainContext";
-import { Button, Input, Text, Card } from "@rneui/themed";
+import { Button, Input, Card } from "@rneui/themed";
+import { Alert } from "react-native";
 
 const LoginForm = () => {
   const { postLogin } = useAuthentication();
@@ -31,6 +32,7 @@ const LoginForm = () => {
       setUser(loginResponse.user);
     } catch (error) {
       console.error(error);
+      Alert.alert("Login failed");
       // TODO: notify user about failed login?
     }
   };
@@ -41,7 +43,7 @@ const LoginForm = () => {
       <Controller
         control={control}
         rules={{
-          required: true,
+          required: { value: true, message: "is required" },
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
@@ -50,16 +52,17 @@ const LoginForm = () => {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            errorMessage={errors.username?.message}
           />
         )}
         name="username"
       />
-      {errors.username && <Text>This is required.</Text>}
 
       <Controller
         control={control}
         rules={{
           maxLength: 100,
+          required: { value: true, message: "is required" },
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
@@ -68,12 +71,12 @@ const LoginForm = () => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            errorMessage={errors.password?.message}
           />
         )}
         name="password"
       />
-
-      <Button title="Submit" onPress={handleSubmit(logIn)} />
+      <Button title="Login" onPress={handleSubmit(logIn)} />
     </Card>
   );
 };

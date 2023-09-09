@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { apiUrl } from "../utils/app-config";
 import { doFetch } from "../utils/functions";
+import { error } from "@babel/eslint-parser/lib/convert/index.cjs";
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
@@ -32,18 +33,13 @@ const useMedia = () => {
 
 const useAuthentication = () => {
   const postLogin = async (user) => {
-    console.log(user);
-    try {
-      return await doFetch(apiUrl + "login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-    } catch (error) {
-      console.error("postLogin error", error);
-    }
+    return await doFetch(apiUrl + "login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
   };
 
   return { postLogin };
@@ -69,7 +65,39 @@ const useUser = () => {
     return await doFetch(apiUrl + "users", options);
   };
 
-  return { getUserByToken, postUser };
+  const putUser = async (userData, token) => {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+      body: JSON.stringify(userData),
+    };
+    return await doFetch(apiUrl + "users", options);
+  };
+
+  const checkUsername = async (username) => {
+    try {
+      const response = await doFetch(`${apiUrl}users/username/${username}`);
+      return response.available;
+    } catch (error) {
+      throw new Error("checkusername Error", error.message);
+    }
+  };
+
+  return { getUserByToken, postUser, checkUsername, putUser };
 };
 
-export { useMedia, useAuthentication, useUser };
+const useTag = () => {
+  const getFilesByTag = async (tag) => {
+    try {
+      return await doFetch(apiUrl + "tags/" + tag);
+    } catch (error) {
+      throw new Error("getFilesByTag error", error.message);
+    }
+  };
+  return { getFilesByTag };
+};
+
+export { useMedia, useAuthentication, useUser, useTag };

@@ -4,6 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTag } from "../hooks/ApiHooks";
 import { mediaUrl } from "../utils/app-config";
 import { Button, Card, Icon, ListItem } from "@rneui/themed";
+import ProfileForm from "../components/ProfileForm";
+import { ScrollView } from "react-native";
 
 const Profile = (props) => {
   const [avatar, setAvatar] = useState("http://placekitten.com/640");
@@ -32,28 +34,31 @@ const Profile = (props) => {
     loadAvatar();
   }, []);
   return (
-    <Card>
-      <Card.Title>{user.username}</Card.Title>
-      <Card.Image source={{ uri: avatar }} />
-      <ListItem>
-        <Icon name="email" />
-        <ListItem.Title>{user.email}</ListItem.Title>
-      </ListItem>
-      {user.full_name && (
+    <ScrollView>
+      <Card>
+        <Card.Title>{user.username}</Card.Title>
+        <Card.Image source={{ uri: avatar }} />
         <ListItem>
-          <Icon name="person" />
-          <ListItem.Title>{user.full_name}</ListItem.Title>
+          <Icon name="email" />
+          <ListItem.Title>{user.email}</ListItem.Title>
         </ListItem>
-      )}
-      <ListItem>
-        <ListItem.Title>user id: {user.user_id}</ListItem.Title>
-      </ListItem>
-      <Card.Divider />
-      <Button title="Log out!" onPress={logOut}>
-        Log out!
-        <Icon name="logout" color="white" />
-      </Button>
-    </Card>
+        {user.full_name && (
+          <ListItem>
+            <Icon name="person" />
+            <ListItem.Title>{user.full_name}</ListItem.Title>
+          </ListItem>
+        )}
+        <ListItem>
+          <ListItem.Title>user id: {user.user_id}</ListItem.Title>
+        </ListItem>
+        <Card.Divider />
+        <Button title="Log out!" onPress={logOut}>
+          Log out!
+          <Icon name="logout" color="white" />
+        </Button>
+        <ProfileForm user={user} />
+      </Card>
+    </ScrollView>
   );
 };
 
