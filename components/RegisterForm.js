@@ -26,7 +26,7 @@ const RegisterForm = ({ setToggleRegister }) => {
       Alert.alert("Success", registerResult.message);
       setToggleRegister(false);
     } catch (error) {
-      Alert.alert("Error", error);
+      Alert.alert("Error", error.message);
     }
   };
 
