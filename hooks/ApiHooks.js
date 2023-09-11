@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { apiUrl } from "../utils/app-config";
 import { doFetch } from "../utils/functions";
 import { error } from "@babel/eslint-parser/lib/convert/index.cjs";
+import { set } from "react-hook-form";
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const loadMedia = async () => {
     try {
@@ -28,7 +30,20 @@ const useMedia = () => {
     loadMedia();
   }, []);
 
-  return { mediaArray };
+  const postMedia = async (mediaData, token) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "x-access-token": token,
+      },
+      body: mediaData,
+    };
+    const uploadResult = await doFetch(apiUrl + "media", options);
+    setLoading(false);
+    return await doFetch(apiUrl + "media", options);
+  };
+
+  return { mediaArray, postMedia, loading };
 };
 
 const useAuthentication = () => {
