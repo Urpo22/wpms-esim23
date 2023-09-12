@@ -8,7 +8,7 @@ import Login from "../views/Login";
 import { MainContext } from "../contexts/MainContext";
 import { Icon } from "@rneui/themed";
 import Upload from "../views/Upload";
-import Profile from "../views/profile";
+import Profile from "../views/Profile";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
