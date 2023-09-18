@@ -1,4 +1,6 @@
 const apiUrl = "https://media.mw.metropolia.fi/wbma/";
 const mediaUrl = "https://media.mw.metropolia.fi/wbma/uploads/";
-const placeholderImage = "http://place-hold.it/300x200&text=Choose";
-export { apiUrl, mediaUrl, placeholderImage };
+const placeholderImage = "https://place-hold.it/300x200&text=Choose";
+const appId = "hfdsjklah";
+
+export { apiUrl, mediaUrl, placeholderImage, appId };
