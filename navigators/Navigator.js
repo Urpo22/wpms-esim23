@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "../views/Home";
+import Profile from "../views/Profile";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Single from "../views/Single";
 import Login from "../views/Login";
 import { MainContext } from "../contexts/MainContext";
 import { Icon } from "@rneui/themed";
 import Upload from "../views/Upload";
-import Profile from "../views/Profile";
+import MyFiles from "../views/MyFiles";
+import Modify from "../views/Modify";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -53,6 +55,8 @@ const Stackscreen = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="Single" component={Single} />
+          <Stack.Screen name="My files" component={MyFiles} />
+          <Stack.Screen name="Modify file" component={Modify} />
         </>
       ) : (
         <Stack.Screen name="Login" component={Login} />
